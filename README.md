@@ -21,6 +21,11 @@ This paper used the big data analytic engines Apache Spark and Apache MXNet for 
 ## Hierarchical LSTM with Attention
 <p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/hiLSTMat.png" /></p>
 
+## 1000 Epochs Training Time for Tensorflow, Pytorch and MXNet
+In our experiments, the MXNet has the fastest training speed to finish 1000 epochs after 891.01 seconds, which is approximately 25% faster than Pytorch and 50% faster than Tensorflow. As a deep learning framework optimized for big data applications, the MXNet shows a different loss function over epochs compared to Tensorflow and Pytorch.
+<p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/Speed%20Testing.png" /></p>
+
+
 License
 -------
 The source code is available only for academic/research purposes (non-commercial).
