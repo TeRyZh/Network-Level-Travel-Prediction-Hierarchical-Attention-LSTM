@@ -6,7 +6,7 @@
 Highlights
 ----------
 * Big data tools were applied in the travel time prediction task. The reference and proposed models were developed with Apache Spark and Apache MXNet that are scalable computing platforms designed for big data workloads. 
-* Existing travel time prediction models with LSTM as the backbone are built on stacked architecture without hierarchical feature extraction capability. We added hierarchical features analogous to the pooling layer in Convolutional Neural Network to capture information of different time sequence. 
+* Existing travel time prediction models with LSTM as the backbone are built on stacked architecture without hierarchical feature extraction capability. We added hierarchical features analogous to the pooling layer in Convolutional Neural Network to capture information of different time scales. 
 * The self-attention module is incorporated that passes on extracted features from the LSTM layers to fully connected layers to add robustness and accuracy. Autocorrelation analysis and stationary transformation were performed to reveal the underlying properties of travel time.
 * We published a new travel time dataset, which is by far the biggest from the Caltrans Performance Measurement System (PeMS) District 4 area (from August-1st-2017 to Oct-31st-2021), at a 5-min time-frequency. 
 
