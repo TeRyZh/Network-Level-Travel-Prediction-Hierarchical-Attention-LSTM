@@ -163,7 +163,6 @@ class HierLstmat(nn.Module):
       outer_cell_states = torch.empty(batch_Size, self.hidden_size, device = device)
       
       # Unfolding LSTM
-      # Last hidden_state will be used to feed the fully connected neural net
       for i in range(self.sequence_len):
         
         hidden_state, cell_state = self.lstm_cell_layer_1(sequence_input[i], (hidden_state, cell_state))
