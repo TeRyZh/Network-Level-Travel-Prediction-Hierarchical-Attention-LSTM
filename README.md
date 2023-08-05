@@ -1,4 +1,4 @@
-# Big-Data-Application-for-Network-Level-Travel-Time-Prediction With Hierarchical LSTM and Attention
+# Big-Data-Application-for-Network-Level-Travel-Time-Prediction With Hierarchical LSTM
 
 -----
 <p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/features-of-spark.jpg" /></p>
