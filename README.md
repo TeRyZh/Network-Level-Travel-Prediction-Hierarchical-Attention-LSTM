@@ -26,7 +26,7 @@ As a key input for trip planning and congestion management, predicted travel tim
 <p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/Predictions_Comparison.png" /></p>
 
 ## 1000 Epochs Training Time for Tensorflow, Pytorch and MXNet
-In our experiments, the MXNet has the fastest training speed to finish 1000 epochs after 891.01 seconds, which is approximately 25% faster than Pytorch and 50% faster than Tensorflow. As a deep learning framework optimized for big data applications, the MXNet shows a different loss function over epochs compared to Tensorflow and Pytorch.
+In our experiments, the MXNet has the fastest training speed to finish 1000 epochs after 891.01 seconds, which is approximately 25% faster than Pytorch and 50% faster than Tensorflow.
 <p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/Speed%20Testing.png" /></p>
 
 
