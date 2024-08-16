@@ -20,7 +20,7 @@ As a key input for trip planning and congestion management, predicted travel tim
 <p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/Attention%20Pooling.drawio%20(2).png" /></p>
 
 ## Hierarchical LSTM with Attention
-<p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/HierLSTMat.png" /></p>
+<p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/MultiLayHierAttnLSTM.png" /></p>
 
 ## One Week Travel Time Prediction Sample
 <p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/Predictions_Comparison.png" /></p>
