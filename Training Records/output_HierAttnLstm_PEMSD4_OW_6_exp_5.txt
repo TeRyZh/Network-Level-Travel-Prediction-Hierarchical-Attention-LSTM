@@ -1,0 +1,199 @@
+Command:
+python run_model.py --task traffic_state_pred --model HierAttnLstm --dataset PEMSD4 --config_file HierAttnLstm_OW_6 --exp_id 00005
+
+Standard Output:
+2024-07-25 06:15:48,331 - INFO - Log directory: ./libcity/log
+2024-07-25 06:15:48,332 - INFO - Begin pipeline, task=traffic_state_pred, model_name=HierAttnLstm, dataset_name=PEMSD4, exp_id=00005
+2024-07-25 06:15:48,332 - INFO - {'task': 'traffic_state_pred', 'model': 'HierAttnLstm', 'dataset': 'PEMSD4', 'saved_model': True, 'train': True, 'exp_id': '00005', 'seed': 0, 'input_window': 48, 'output_window': 6, 'device': device(type='cuda', index=0), 'hidden_size': 128, 'num_layers': 3, 'dropout': 0.1, 'natt_hops': 3, 'nfc': 512, 'max_up_len': 96, 'dataset_class': 'TrafficStatePointDataset', 'executor': 'TrafficStateExecutor', 'evaluator': 'TrafficStateEvaluator', 'batch_size': 32, 'cache_dataset': True, 'num_workers': 0, 'pad_with_last_sample': True, 'train_rate': 0.7, 'eval_rate': 0.1, 'scaler': 'minmax01', 'load_external': False, 'normal_external': False, 'ext_scaler': 'none', 'add_time_in_day': False, 'add_day_in_week': False, 'robustness_test': False, 'noise_type': 'gaussian', 'disturb_rate': 0.5, 'noise_mean': [5], 'noise_SD': [10], 'gpu': True, 'gpu_id': 0, 'max_epoch': 100, 'train_loss': 'none', 'epoch': 0, 'learner': 'adam', 'learning_rate': 0.01, 'weight_decay': 0, 'lr_epsilon': 1e-08, 'lr_beta1': 0.9, 'lr_beta2': 0.999, 'lr_alpha': 0.99, 'lr_momentum': 0, 'lr_decay': False, 'lr_scheduler': 'multisteplr', 'lr_decay_ratio': 0.1, 'steps': [5, 20, 40, 70], 'step_size': 10, 'lr_T_max': 30, 'lr_eta_min': 0, 'lr_patience': 10, 'lr_threshold': 0.0001, 'clip_grad_norm': False, 'max_grad_norm': 1.0, 'use_early_stop': True, 'patience': 5, 'log_level': 'INFO', 'log_every': 1, 'load_best_epoch': True, 'hyper_tune': False, 'metrics': ['MAE', 'MAPE', 'MSE', 'RMSE', 'masked_MAE', 'masked_MAPE', 'masked_MSE', 'masked_RMSE', 'R2', 'EVAR'], 'evaluator_mode': 'single', 'save_mode': ['csv'], 'geo': {'including_types': ['Point'], 'Point': {}}, 'rel': {'including_types': ['geo'], 'geo': {'cost': 'num'}}, 'dyna': {'including_types': ['state'], 'state': {'entity_id': 'geo_id', 'traffic_flow': 'num', 'traffic_occupancy': 'num', 'traffic_speed': 'num'}}, 'data_col': ['traffic_flow', 'traffic_occupancy', 'traffic_speed'], 'weight_col': 'cost', 'data_files': ['PEMSD4'], 'geo_file': 'PEMSD4', 'rel_file': 'PEMSD4', 'output_dim': 3, 'time_intervals': 300, 'init_weight_inf_or_zero': 'zero', 'set_weight_link_or_dist': 'link', 'calculate_weight_adj': False, 'weight_adj_epsilon': 0.1}
+self.scaler_type  minmax01
+2024-07-25 06:15:48,340 - INFO - Loaded file PEMSD4.geo, num_nodes=307
+2024-07-25 06:15:48,353 - INFO - set_weight_link_or_dist: link
+2024-07-25 06:15:48,353 - INFO - init_weight_inf_or_zero: zero
+2024-07-25 06:15:48,354 - INFO - Loaded file PEMSD4.rel, shape=(307, 307)
+2024-07-25 06:15:48,354 - INFO - Loading ./libcity/cache/dataset_cache/point_based_PEMSD4_48_6_0.7_0.1_minmax01_32_False_False_False_True.npz
+2024-07-25 06:16:00,765 - INFO - train	x: (11857, 48, 307, 3), y: (11857, 6, 307, 3)
+2024-07-25 06:16:00,765 - INFO - eval	x: (1694, 48, 307, 3), y: (1694, 6, 307, 3)
+2024-07-25 06:16:00,765 - INFO - test	x: (3388, 48, 307, 3), y: (3388, 6, 307, 3)
+2024-07-25 06:16:01,111 - INFO - MinMax01Scaler max: 919.0, min: 0.0
+2024-07-25 06:16:01,111 - INFO - NoneScaler
+2024-07-25 06:16:05,412 - INFO - HierAttnLstm(
+  (lstm_cells): ModuleList(
+    (0): LSTMCell(921, 128)
+    (1-2): 2 x LSTMCell(128, 128)
+  )
+  (hidden_state_pooling): ModuleList(
+    (0-1): 2 x SelfAttentionPooling(
+      (W): Linear(in_features=128, out_features=1, bias=True)
+    )
+  )
+  (cell_state_pooling): ModuleList(
+    (0-1): 2 x SelfAttentionPooling(
+      (W): Linear(in_features=128, out_features=1, bias=True)
+    )
+  )
+  (self_attention): SelfAttention(
+    (ut_dense): Sequential(
+      (0): Linear(in_features=128, out_features=128, bias=True)
+      (1): Tanh()
+    )
+    (et_dense): Linear(in_features=128, out_features=3, bias=True)
+    (softmax): Softmax(dim=-1)
+  )
+  (fc_layer): Sequential(
+    (0): Linear(in_features=384, out_features=512, bias=True)
+    (1): ReLU()
+    (2): Linear(in_features=512, out_features=921, bias=True)
+  )
+)
+2024-07-25 06:16:05,412 - INFO - lstm_cells.0.weight_ih	torch.Size([512, 921])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - lstm_cells.0.weight_hh	torch.Size([512, 128])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - lstm_cells.0.bias_ih	torch.Size([512])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - lstm_cells.0.bias_hh	torch.Size([512])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - lstm_cells.1.weight_ih	torch.Size([512, 128])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - lstm_cells.1.weight_hh	torch.Size([512, 128])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - lstm_cells.1.bias_ih	torch.Size([512])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - lstm_cells.1.bias_hh	torch.Size([512])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - lstm_cells.2.weight_ih	torch.Size([512, 128])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - lstm_cells.2.weight_hh	torch.Size([512, 128])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - lstm_cells.2.bias_ih	torch.Size([512])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - lstm_cells.2.bias_hh	torch.Size([512])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - hidden_state_pooling.0.W.weight	torch.Size([1, 128])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - hidden_state_pooling.0.W.bias	torch.Size([1])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - hidden_state_pooling.1.W.weight	torch.Size([1, 128])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - hidden_state_pooling.1.W.bias	torch.Size([1])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - cell_state_pooling.0.W.weight	torch.Size([1, 128])	cuda:0	True
+2024-07-25 06:16:05,413 - INFO - cell_state_pooling.0.W.bias	torch.Size([1])	cuda:0	True
+2024-07-25 06:16:05,414 - INFO - cell_state_pooling.1.W.weight	torch.Size([1, 128])	cuda:0	True
+2024-07-25 06:16:05,414 - INFO - cell_state_pooling.1.W.bias	torch.Size([1])	cuda:0	True
+2024-07-25 06:16:05,414 - INFO - self_attention.ut_dense.0.weight	torch.Size([128, 128])	cuda:0	True
+2024-07-25 06:16:05,414 - INFO - self_attention.ut_dense.0.bias	torch.Size([128])	cuda:0	True
+2024-07-25 06:16:05,414 - INFO - self_attention.et_dense.weight	torch.Size([3, 128])	cuda:0	True
+2024-07-25 06:16:05,414 - INFO - self_attention.et_dense.bias	torch.Size([3])	cuda:0	True
+2024-07-25 06:16:05,414 - INFO - fc_layer.0.weight	torch.Size([512, 384])	cuda:0	True
+2024-07-25 06:16:05,414 - INFO - fc_layer.0.bias	torch.Size([512])	cuda:0	True
+2024-07-25 06:16:05,414 - INFO - fc_layer.2.weight	torch.Size([921, 512])	cuda:0	True
+2024-07-25 06:16:05,414 - INFO - fc_layer.2.bias	torch.Size([921])	cuda:0	True
+2024-07-25 06:16:05,414 - INFO - Total parameter numbers: 1489312
+2024-07-25 06:16:05,414 - INFO - You select `adam` optimizer.
+2024-07-25 06:16:05,415 - WARNING - Received none train loss func and will use the loss func defined in the model.
+2024-07-25 06:16:05,415 - INFO - Start training ...
+2024-07-25 06:16:05,415 - INFO - num_batches:371
+2024-07-25 06:17:51,570 - INFO - epoch complete!
+2024-07-25 06:17:51,570 - INFO - evaluating now!
+2024-07-25 06:17:56,075 - INFO - Epoch [0/100] train_loss: 19.9824, val_loss: 11.0875, lr: 0.010000, 110.66s
+2024-07-25 06:17:56,095 - INFO - Saved model at 0
+2024-07-25 06:17:56,096 - INFO - Val loss decrease from inf to 11.0875, saving to ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4_epoch0.tar
+2024-07-25 06:19:42,302 - INFO - epoch complete!
+2024-07-25 06:19:42,302 - INFO - evaluating now!
+2024-07-25 06:19:46,869 - INFO - Epoch [1/100] train_loss: 10.1872, val_loss: 9.6716, lr: 0.010000, 110.77s
+2024-07-25 06:19:46,891 - INFO - Saved model at 1
+2024-07-25 06:19:46,891 - INFO - Val loss decrease from 11.0875 to 9.6716, saving to ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4_epoch1.tar
+2024-07-25 06:21:32,379 - INFO - epoch complete!
+2024-07-25 06:21:32,379 - INFO - evaluating now!
+2024-07-25 06:21:36,996 - INFO - Epoch [2/100] train_loss: 9.4110, val_loss: 9.3443, lr: 0.010000, 110.10s
+2024-07-25 06:21:37,016 - INFO - Saved model at 2
+2024-07-25 06:21:37,016 - INFO - Val loss decrease from 9.6716 to 9.3443, saving to ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4_epoch2.tar
+2024-07-25 06:23:22,945 - INFO - epoch complete!
+2024-07-25 06:23:22,945 - INFO - evaluating now!
+2024-07-25 06:23:27,581 - INFO - Epoch [3/100] train_loss: 9.2142, val_loss: 9.2496, lr: 0.010000, 110.56s
+2024-07-25 06:23:27,601 - INFO - Saved model at 3
+2024-07-25 06:23:27,601 - INFO - Val loss decrease from 9.3443 to 9.2496, saving to ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4_epoch3.tar
+2024-07-25 06:25:13,284 - INFO - epoch complete!
+2024-07-25 06:25:13,285 - INFO - evaluating now!
+2024-07-25 06:25:17,958 - INFO - Epoch [4/100] train_loss: 8.9578, val_loss: 8.9734, lr: 0.010000, 110.36s
+2024-07-25 06:25:17,981 - INFO - Saved model at 4
+2024-07-25 06:25:17,981 - INFO - Val loss decrease from 9.2496 to 8.9734, saving to ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4_epoch4.tar
+2024-07-25 06:27:03,479 - INFO - epoch complete!
+2024-07-25 06:27:03,479 - INFO - evaluating now!
+2024-07-25 06:27:08,008 - INFO - Epoch [5/100] train_loss: 8.8511, val_loss: 8.9762, lr: 0.010000, 110.03s
+2024-07-25 06:28:53,981 - INFO - epoch complete!
+2024-07-25 06:28:53,981 - INFO - evaluating now!
+2024-07-25 06:28:58,497 - INFO - Epoch [6/100] train_loss: 8.7264, val_loss: 9.0387, lr: 0.010000, 110.49s
+2024-07-25 06:30:45,527 - INFO - epoch complete!
+2024-07-25 06:30:45,528 - INFO - evaluating now!
+2024-07-25 06:30:50,169 - INFO - Epoch [7/100] train_loss: 8.6340, val_loss: 8.8982, lr: 0.010000, 111.67s
+2024-07-25 06:30:50,191 - INFO - Saved model at 7
+2024-07-25 06:30:50,191 - INFO - Val loss decrease from 8.9734 to 8.8982, saving to ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4_epoch7.tar
+2024-07-25 06:32:36,992 - INFO - epoch complete!
+2024-07-25 06:32:36,992 - INFO - evaluating now!
+2024-07-25 06:32:41,617 - INFO - Epoch [8/100] train_loss: 8.6494, val_loss: 8.9364, lr: 0.010000, 111.43s
+2024-07-25 06:34:28,897 - INFO - epoch complete!
+2024-07-25 06:34:28,897 - INFO - evaluating now!
+2024-07-25 06:34:33,581 - INFO - Epoch [9/100] train_loss: 8.4646, val_loss: 8.6028, lr: 0.010000, 111.96s
+2024-07-25 06:34:33,601 - INFO - Saved model at 9
+2024-07-25 06:34:33,601 - INFO - Val loss decrease from 8.8982 to 8.6028, saving to ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4_epoch9.tar
+2024-07-25 06:36:19,876 - INFO - epoch complete!
+2024-07-25 06:36:19,876 - INFO - evaluating now!
+2024-07-25 06:36:24,384 - INFO - Epoch [10/100] train_loss: 8.4817, val_loss: 8.9561, lr: 0.010000, 110.78s
+2024-07-25 06:38:10,946 - INFO - epoch complete!
+2024-07-25 06:38:10,946 - INFO - evaluating now!
+2024-07-25 06:38:15,679 - INFO - Epoch [11/100] train_loss: 8.3087, val_loss: 8.7555, lr: 0.010000, 111.30s
+2024-07-25 06:40:02,555 - INFO - epoch complete!
+2024-07-25 06:40:02,555 - INFO - evaluating now!
+2024-07-25 06:40:07,106 - INFO - Epoch [12/100] train_loss: 8.2903, val_loss: 8.4908, lr: 0.010000, 111.43s
+2024-07-25 06:40:07,128 - INFO - Saved model at 12
+2024-07-25 06:40:07,129 - INFO - Val loss decrease from 8.6028 to 8.4908, saving to ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4_epoch12.tar
+2024-07-25 06:41:53,703 - INFO - epoch complete!
+2024-07-25 06:41:53,704 - INFO - evaluating now!
+2024-07-25 06:41:58,177 - INFO - Epoch [13/100] train_loss: 8.2383, val_loss: 8.6984, lr: 0.010000, 111.05s
+2024-07-25 06:43:45,177 - INFO - epoch complete!
+2024-07-25 06:43:45,177 - INFO - evaluating now!
+2024-07-25 06:43:49,592 - INFO - Epoch [14/100] train_loss: 8.1975, val_loss: 8.4122, lr: 0.010000, 111.41s
+2024-07-25 06:43:49,614 - INFO - Saved model at 14
+2024-07-25 06:43:49,614 - INFO - Val loss decrease from 8.4908 to 8.4122, saving to ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4_epoch14.tar
+2024-07-25 06:45:39,830 - INFO - epoch complete!
+2024-07-25 06:45:39,830 - INFO - evaluating now!
+2024-07-25 06:45:44,438 - INFO - Epoch [15/100] train_loss: 8.1656, val_loss: 8.5772, lr: 0.010000, 114.82s
+2024-07-25 06:47:32,629 - INFO - epoch complete!
+2024-07-25 06:47:32,630 - INFO - evaluating now!
+2024-07-25 06:47:37,204 - INFO - Epoch [16/100] train_loss: 8.1004, val_loss: 8.5203, lr: 0.010000, 112.77s
+2024-07-25 06:49:26,543 - INFO - epoch complete!
+2024-07-25 06:49:26,543 - INFO - evaluating now!
+2024-07-25 06:49:31,180 - INFO - Epoch [17/100] train_loss: 8.1342, val_loss: 8.5383, lr: 0.010000, 113.98s
+2024-07-25 06:51:20,326 - INFO - epoch complete!
+2024-07-25 06:51:20,327 - INFO - evaluating now!
+2024-07-25 06:51:25,047 - INFO - Epoch [18/100] train_loss: 7.9955, val_loss: 8.4000, lr: 0.010000, 113.87s
+2024-07-25 06:51:25,070 - INFO - Saved model at 18
+2024-07-25 06:51:25,070 - INFO - Val loss decrease from 8.4122 to 8.4000, saving to ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4_epoch18.tar
+2024-07-25 06:53:15,050 - INFO - epoch complete!
+2024-07-25 06:53:15,050 - INFO - evaluating now!
+2024-07-25 06:53:19,808 - INFO - Epoch [19/100] train_loss: 7.9949, val_loss: 8.4733, lr: 0.010000, 114.74s
+2024-07-25 06:55:06,120 - INFO - epoch complete!
+2024-07-25 06:55:06,121 - INFO - evaluating now!
+2024-07-25 06:55:10,776 - INFO - Epoch [20/100] train_loss: 8.0331, val_loss: 8.3415, lr: 0.010000, 110.97s
+2024-07-25 06:55:10,797 - INFO - Saved model at 20
+2024-07-25 06:55:10,797 - INFO - Val loss decrease from 8.4000 to 8.3415, saving to ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4_epoch20.tar
+2024-07-25 06:56:56,414 - INFO - epoch complete!
+2024-07-25 06:56:56,414 - INFO - evaluating now!
+2024-07-25 06:57:01,058 - INFO - Epoch [21/100] train_loss: 8.0125, val_loss: 8.3639, lr: 0.010000, 110.26s
+2024-07-25 06:58:47,096 - INFO - epoch complete!
+2024-07-25 06:58:47,096 - INFO - evaluating now!
+2024-07-25 06:58:51,736 - INFO - Epoch [22/100] train_loss: 7.9296, val_loss: 8.6421, lr: 0.010000, 110.68s
+2024-07-25 07:00:38,314 - INFO - epoch complete!
+2024-07-25 07:00:38,314 - INFO - evaluating now!
+2024-07-25 07:00:42,784 - INFO - Epoch [23/100] train_loss: 7.9187, val_loss: 8.5869, lr: 0.010000, 111.05s
+2024-07-25 07:02:29,187 - INFO - epoch complete!
+2024-07-25 07:02:29,187 - INFO - evaluating now!
+2024-07-25 07:02:33,694 - INFO - Epoch [24/100] train_loss: 7.9054, val_loss: 8.4381, lr: 0.010000, 110.91s
+2024-07-25 07:04:18,857 - INFO - epoch complete!
+2024-07-25 07:04:18,857 - INFO - evaluating now!
+2024-07-25 07:04:23,418 - INFO - Epoch [25/100] train_loss: 7.8646, val_loss: 8.4190, lr: 0.010000, 109.72s
+2024-07-25 07:04:23,418 - WARNING - Early stopping at epoch: 25
+2024-07-25 07:04:23,418 - INFO - Trained totally 26 epochs, average train time is 106.858s, average eval time is 4.594s
+2024-07-25 07:04:23,435 - INFO - Loaded model at 20
+2024-07-25 07:04:23,435 - INFO - Saved model at ./libcity/cache/00005/model_cache/HierAttnLstm_PEMSD4.m
+2024-07-25 07:04:23,457 - INFO - Start evaluating ...
+2024-07-25 07:04:35,431 - INFO - Note that you select the single mode to evaluate!
+2024-07-25 07:04:35,434 - INFO - Evaluate result is saved at ./libcity/cache/00005/evaluate_cache\2024_07_25_07_04_35_HierAttnLstm_PEMSD4.csv
+2024-07-25 07:04:35,446 - INFO - 
+        MAE        MAPE         MSE  ...  masked_RMSE        R2      EVAR
+1  8.932841  20428808.0  509.548920  ...    21.448511  0.969446  0.969492
+2  8.933020  20425326.0  509.561615  ...    21.448828  0.969446  0.969491
+3  8.933136  20424756.0  509.576477  ...    21.449183  0.969445  0.969491
+4  8.933222  20422412.0  509.581604  ...    21.449310  0.969445  0.969490
+5  8.933194  20415792.0  509.581604  ...    21.449366  0.969445  0.969490
+6  8.933181  20413210.0  509.576691  ...    21.449280  0.969445  0.969491
+
+[6 rows x 10 columns]
+
+Standard Error:
