@@ -1,20 +1,21 @@
-# Network-Level-Traffic-Prediction With Hierarchical Attention LSTM
+# [Network-Level-Traffic-Prediction With Hierarchical Attention LSTM](https://www.maxapress.com/data/article/dts/preview/pdf/dts-0024-0021.pdf)
 
 -----
 <p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/features-of-spark.jpg" /></p>
 
 Highlights
 ----------
-* Big data tools, such as Apache Spark and Apache MXNet, were applied in travel time processing, modeling, and prediction, which are scalable computing platforms designed for big data workloads. 
-* The Autocorrelation analysis and stationary transformation were performed to reveal the underlying properties of travel time. We analyzed a four-year travel time dataset, which is by far the biggest from the Caltrans Performance Measurement System (PeMS) for District 4 Bay Area (from August-1st-2017 to Oct-31st-2021), at a 5-min time frequency. 
-* Existing travel time prediction models with LSTM as the backbone are built on stacked architecture without hierarchical feature extraction capability. We proposed a hierarchical pooling module to capture information of different time steps, which is analogous to the human visual perception system that summarizes low-level input into high-level abstractions.
-* The self-attention is incorporated that passes on extracted features from the LSTM layers to fully connected layers to add robustness and accuracy. 
+* Introduces a dual attention pooling mechanism that processes both cell states and hidden states across LSTM layers that can better captures complex temporal patterns. 
+* More accurate prediction of unusual traffic events and No feature engineering required, unlike graph-based methods. 
+* The Autocorrelation analysis and stationary transformation were performed to reveal the underlying properties of travel time. 
+*  We proposed a hierarchical pooling module to capture information of different time steps, which is analogous to the human visual perception system that summarizes low-level input into high-level abstractions.
+* Outperforms existing models on traffic flow forecasting for PEMSD4 and PEMSD8 datasets Achieves 50% reduction in MAE for PEMSD4 and 38% for PEMSD8 compared to next best models with Efficient model size (1.58MB with 64 hidden states). 
 
 
 
 Abstract
 --------
-As a key input for trip planning and congestion management, predicted travel time is essential to the advanced traveler information systems (ATIS). The travel time data collected from widespread traffic monitoring sensors necessitate big data analytic tools for querying, visualization, and identifying meaningful traffic patterns. This paper utilizes a large-scale travel time dataset from Caltrans Performance Measurement System (PeMS) system that is an overflow for traditional data processing and modeling tools. To overcome the challenges of the massive amount of data, the big data analytic engines Apache Spark and Apache MXNet are applied for data wrangling and modeling. Stationarity and autocorrelation were performed to explore and visualize the trend of time-varying data. Inspired by the success of the hierarchical architecture for many Artificial Intelligent (AI) tasks, we consolidate the cell and hidden states passed from low-level to high-level LSTM with an attention pooling similar to how the human perception system operates. The designed hierarchical LSTM model can consider the dependencies at different time scales to capture the spatial-temporal correlations of network-level travel time. Another self-attention module is then devised to connect LSTM extracted features to the fully connected layers, predicting travel time for all corridors instead of a single link/route. The comparison results show that the Hierarchical LSTM with Attention (HierLSTMat) model gives the best prediction results at 30-minute and 45-min horizons and can successfully forecast unusual congestion. The efficiency gained from big data analytic tools was evaluated by comparing them with popular data science and deep learning frameworks.
+Traffic state data, such as speed, density, volume and travel time collected from ubiquitous roadway detectors require advanced network level analytics for forecasting and identifying significant traffic patterns. This paper leverages diverse traffic state datasets from the Caltrans Performance Measurement System (PeMS) hosted on the open benchmark and achieved promising performance compared to well recognized spatial-temporal prediction models. Drawing inspiration from the success of hierarchical architectures in various Artificial Intelligence (AI) tasks, we integrate cell and hidden states from low-level to high-level Long Short-Term Memory (LSTM) networks with the attention pooling mechanism, similar to human perception systems. The developed hierarchical structure is designed to account for dependencies across different time scales, capturing the spatial-temporal correlations of network-level traffic states, enabling the prediction of traffic states for all corridors rather than a single link or route. The efficiency of designed hierarchical LSTM is analyzed by ablation study, demonstrating that the attention-pooling mechanism in both cell and hidden states not only provides higher prediction accuracy but also effectively forecasts unusual congestion patterns. Data and code are made publicly available to support reproducible scientific research.
 
 ## Attention Pooling
 <p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/Attention%20Pooling.drawio%20(2).png" /></p>
@@ -25,10 +26,7 @@ As a key input for trip planning and congestion management, predicted travel tim
 ## One Week Travel Time Prediction Sample
 <p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/Predictions_Comparison.png" /></p>
 
-## 1000 Epochs Training Time for Tensorflow, Pytorch and MXNet
-In our experiments, the MXNet has the fastest training speed to finish 1000 epochs after 891.01 seconds, which is approximately 25% faster than Pytorch and 50% faster than Tensorflow.
-<p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/Speed%20Testing.png" /></p>
-
+## [Code Implementations](https://github.com/TeRyZh/Network-Level-Travel-Prediction-Hierarchical-Attention-LSTM/blob/main/baselines/HierAttnLstm.py)
 
 License
 -------
