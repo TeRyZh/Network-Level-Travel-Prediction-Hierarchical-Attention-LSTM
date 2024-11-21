@@ -1,1 +1,2 @@
-
+Our experimentation process strictly adheres to the evaluation module built into the LibCity package, ensuring consistency and comparability with other studies using this framework. 
+We adopt the structure of LibCity atomic files and apply normalization techniques such as Z-score, min-max, or logarithmic normalization to prepare the data for model input. It's important to note that we do not perform any further filtering or data imputation in our preprocessing workflow, keeping the process streamlined and focused on normalization as the key preparation step before feeding the data into the model.
