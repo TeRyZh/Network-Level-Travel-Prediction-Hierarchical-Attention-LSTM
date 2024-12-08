@@ -1,7 +1,9 @@
 # [Network-Level-Traffic-Prediction With Hierarchical Attention LSTM](https://www.maxapress.com/data/article/dts/preview/pdf/dts-0024-0021.pdf)
 
 -----
-<p align="center"><img src="https://github.com/TeRyZh/Big-Data-Application-for-Network-Level-Travel-Time-Prediction/blob/main/Images/features-of-spark.jpg" /></p>
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/big-data-application-for-network-level-travel/traffic-prediction-on-pems04)](https://paperswithcode.com/sota/traffic-prediction-on-pems04?p=big-data-application-for-network-level-travel)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/big-data-application-for-network-level-travel/traffic-prediction-on-pems08)](https://paperswithcode.com/sota/traffic-prediction-on-pems08?p=big-data-application-for-network-level-travel)
 
 Highlights
 ----------
@@ -9,7 +11,9 @@ Highlights
 * More accurate prediction of unusual traffic events and No feature engineering required, unlike graph-based methods. 
 * The Autocorrelation analysis and stationary transformation were performed to reveal the underlying properties of travel time. 
 *  We proposed a hierarchical pooling module to capture information of different time steps, which is analogous to the human visual perception system that summarizes low-level input into high-level abstractions.
-* Outperforms existing models on traffic flow forecasting for PEMSD4 and PEMSD8 datasets Achieves 50% reduction in MAE for PEMSD4 and 38% for PEMSD8 compared to next best models with Efficient model size (1.58MB with 64 hidden states). 
+* Outperforms existing models on traffic flow forecasting for PEMSD4 and PEMSD8 datasets Achieves 50% reduction in MAE for PEMSD4 and 38% for PEMSD8 compared to next best models with Efficient model size (1.58MB with 64 hidden states).
+
+
 
 
 
