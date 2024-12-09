@@ -1,5 +1,10 @@
 # [Network-Level-Traffic-Prediction With Hierarchical Attention LSTM](https://www.maxapress.com/data/article/dts/preview/pdf/dts-0024-0021.pdf)
 
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/big-data-application-for-network-level-travel/traffic-prediction-on-pemsd4)](https://paperswithcode.com/sota/traffic-prediction-on-pemsd4?p=big-data-application-for-network-level-travel)
+
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/big-data-application-for-network-level-travel/traffic-prediction-on-pemsd8)](https://paperswithcode.com/sota/traffic-prediction-on-pemsd8?p=big-data-application-for-network-level-travel)
+
+
 -----
 
 Highlights
